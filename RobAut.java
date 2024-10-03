@@ -31,16 +31,21 @@ public class BasicAutonomous extends LinearOpMode {
             stopMotor();
         }
     }
-    public void moveFoward(double power, long time){
-        
+    
+    public void moveFoward(double power, double thisdistance){
+
+        while(!(thisdistance == distancia()){
         leftFront.setPower(power);
         leftRear.setPower(power);
         rightFront.setPower(-power);
         rightRear.setPower(-power);
-        
-        sleep(time);
-    }
-    public void turnRight(double power, long time){
+        }
+        leftFront.setPower(0);
+        leftRear.setPower(0);
+        rightFront.setPower(0);
+        rightRear.setPower(0);
+        }
+    public void turnRight(double power, distancia){
         leftFront.setPower(-power);
         leftRear.setPower(-power);
         rightFront.setPower(power);
@@ -48,7 +53,7 @@ public class BasicAutonomous extends LinearOpMode {
         
         sleep(time);
     }
-    public void turnLeft(double power, long time){
+    public void turnLeft(double power, distancia){
         leftFront.setPower(power);
         leftRear.setPower(power);
         rightFront.setPower(power);
@@ -61,5 +66,18 @@ public class BasicAutonomous extends LinearOpMode {
         leftRear.setPower(0);
         rightFront.setPower(0);
         rightRear.setPower(0);
+    }
+
+    public void distancia(){
+        double CPR;
+        CPR = 560;
+        double raio = 37,5 ;
+        double circ = 2* Math.PI() * raio;
+        double revolutionsLF = (leftFront.getPosition()/ CPR) ;
+        double revolutionsLR = (leftRear.getPosition()/ CPR) ;
+        double revolutionsRF = (rightFront.getPosition()/ CPR) ;
+        double revolutionsRR = (rightRear.getPosition()/ CPR) ;
+        double distancia = ((revolutionsLF * circ) + (revolutionsLR * circ) + (revolutionsRF * circ) + (revolutionsRR * circ)) / 4;
+        return distancia;
     }
               }
