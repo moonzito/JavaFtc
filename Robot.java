@@ -20,6 +20,11 @@ public class Robot{
       RightFront = hardwareMap.get(DcMotor.class, "RightFront");
       leftBack = hardwareMap.get(DcMotor.class, "leftBack");
       RightBack = hardwareMap.get(DcMotor.class, "RightBack");
+      
+      LeftFront.setMode(DcMotor.ZeroPowerBehavior.BRAKE);
+      RightFront.setMode(DcMotor.ZeroPowerBehavior.BRAKE);
+      LeftBack.setMode(DcMotor.ZeroPowerBehavior.BRAKE);
+      RightBack.setMode(DcMotor.ZeroPowerBehavior.BRAKE);
   }
   
 }
